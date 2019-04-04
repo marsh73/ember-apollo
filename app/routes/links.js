@@ -1,10 +1,8 @@
-import Ember from 'ember';
-import UnsubscribeRoute from 'ember-apollo-client/mixins/unsubscribe-route';
+import Route from "@ember/routing/route";
+import { RouteQueryManager } from "ember-apollo-client";
 import query from 'ember-apollo/gql/queries/allLinks';
 
-export default Ember.Route.extend(UnsubscribeRoute, {
-  apollo: Ember.inject.service(),
-
+export default Route.extend(RouteQueryManager, {
   model() {
     return this.get('apollo').query({ query }, 'allLinks').catch(error => alert(error));
   }
